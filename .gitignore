@@ -1,0 +1,63 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+bin/
+include/
+lib/
+lib64/
+bot.txt
+
+# Virtual environment directories
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+pyvenv.cfg
+.env
+
+# IDE or editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Distribution/packaging
+*.egg-info/
+*.egg
+dist/
+build/
+pip-wheel-metadata/
+*.whl
+
+# Testing
+.coverage
+.tox/
+.nox/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# PyCharm specific files
+# .idea/
+
+# MacOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# Logs
+*.log
+
+# Other files to ignore
+*.bak
+*.tmp
+*.swp
+lib64
