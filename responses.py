@@ -1,6 +1,6 @@
 import random
 
-from fetcher import getCraftingList, getCraftingListAlt, getDropInfo, getHTML 
+from fetcher import getCraftingListAlt, getDropInfo, getHTML 
 
 #https://www.youtube.com/watch?v=DnFP0MRJPIg
 def handle_responses(message):
@@ -12,14 +12,16 @@ def handle_responses(message):
         match mode: 
             case mode if "item" in mode:
                 data = getCraftingListAlt(getHTML(thing))
-                print(data)
+                #print(data)
                 return getStringCrafting(data)
             case mode if "drop" in mode:
                 data = getDropInfo(getHTML(thing))
-                print(data)
+                #print(data)
                 return getStringDrop(data)
-            case ["boss"]:
+            case mode if "boss" in mode:
                 return None
+            case _:
+                return 'Lol dum b fuckers'
     else:
     
         if "d6" in lMessage:
@@ -32,22 +34,6 @@ def handle_responses(message):
             return str(random.randint(0,1))
         else:
             return "idk"
-            
-# Shitty function
-def getString(craftingList):
-    text = ''
-    craftingModes = craftingList[0]
-    #print(type(craftingModes)
-    for x in craftingModes:
-        text += f'{x}: {craftingList[1][0+craftingModes.index(x)][0][0]}'
-        text += 'Ingredients: '
-        for x in range(1, len(craftingList[1][0+craftingModes.index(x)][0])):
-            if x != len(craftingList[1][0+craftingModes.index(x)][0])-1:
-                text += craftingList[1][0+craftingModes.index(x)][0][x] + ", "
-            else:
-                text += craftingList[1][0+craftingModes.index(x)][0][x]
-        text += f"\nMade in: {str(craftingList[1][0+craftingModes.index(x)][1]).strip("[]''''")}"
-    return text
 
 def getStringCrafting(dictCraft: dict):
     text = ''

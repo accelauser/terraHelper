@@ -1,10 +1,10 @@
 ### TODO:
-[X] Get quantity from craft list
-[ ] Fix dropFrom fuction 
-[ ] Make custom messages 
-[X] Generic getStringAlt -> Can't do, made another function do deal with 
-[X] Refactor getCrafingInfo func using:
-[ ]
+- [X] Get quantity from craft list
+- [X] Fix dropFrom fuction 
+- [ ] Make custom messages 
+- [X] Generic getStringAlt -> Can't do, made another function do deal with 
+- [X] Refactor getCrafingInfo func using:
+
 1. Get table
 2. find_all('tr')
 3. in tr if find("div", class_="version-note note-text small") != 'PC Version'
@@ -22,5 +22,6 @@
 5. Send that string using discord bot api
 
 ### Special cases:
-1. Bookcase item
-2. Things that have diferent crafts in diferent versions.
+1. !item Bookcase
+2. !item coin
+
