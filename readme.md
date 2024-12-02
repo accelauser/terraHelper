@@ -4,6 +4,7 @@
 - [ ] Make custom messages 
 - [X] Generic getStringAlt -> Can't do, made another function do deal with 
 - [X] Refactor getCrafingInfo func using:
+- [ ] Refactor loops and conditions 
 
 1. Get table
 2. find_all('tr')
@@ -23,5 +24,4 @@
 
 ### Special cases:
 1. !item Bookcase
-2. !item coin
 

@@ -1,10 +1,9 @@
 import os
 
-
 from discord import Client, Intents
 from dotenv import load_dotenv
 
-from responses import handle_responses 
+from responses import Handler
 #https://github.com/indently/discord_tutorial_2024
 
 #NOQA
@@ -12,6 +11,7 @@ from responses import handle_responses
 intents = Intents.default()
 intents.message_content = True
 client = Client(intents=intents)
+handler = Handler()
 
 async def sendMessage( message, userMessage):
     if not userMessage:
@@ -20,7 +20,7 @@ async def sendMessage( message, userMessage):
     if is_private := userMessage[0] == '?':
         userMessage = userMessage[1::]
     try: 
-        response = handle_responses(userMessage)
+        response = handler.handle_responses(userMessage)
         if is_private:
             await message.author.send(response)
         else:
