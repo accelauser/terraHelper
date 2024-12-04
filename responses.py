@@ -1,4 +1,5 @@
 import random
+import asjdasd
 from fetcher import Fetcher
 fetcher = Fetcher()
 
@@ -14,16 +15,34 @@ class Handler():
             mode = info[0]
             thing = info[1]
             match mode: 
-                case mode if "item" in mode:
-                    data = fetcher.getCraftingListAlt(fetcher.getHTML(thing))
-                    #print(data)
-                    return self.getStringCrafting(data)
+                case mode if "crafting" in mode:
+                    data = asjdasd.getCraftingList(asjdasd.getHTML(thing))
+                    print(data)
+                    return self.getStringCrafting(data, thing)
                 case mode if "drop" in mode:
-                    data = fetcher.getDropInfo(fetcher.getHTML(thing))
-                    #print(data)
-                    return self.getStringDrop(data)
+                    data = fetcher.getDropInfo(asjdasd.getHTML(thing))
+                    print(data)
+                    return self.getStringDrop(data, thing)
                 case mode if "boss" in mode:
                     return None
+                case mode if "item" in mode:
+                    return None
+                case mode if "info" in mode:
+                    return None
+                case mode if "help" in mode:
+                    text ='''
+                          Welcome to terra helper!!
+                          Modes:
+                          !item -> Returns the item atributes
+                          !crafting -> Returns the item crafint list, how to make and items made by
+                          !drop -> Returns where the item can be obtained 
+                          !info -> Return all of the above 
+
+                          Extra:
+                          d[6,12,100] -> return a random int like a dice
+                          coin or coin flip -> Return 0 or 1
+                          '''
+                    return text
                 case _:
                     return 'Lol dum b fuckers'
         else:
@@ -39,24 +58,19 @@ class Handler():
             else:
                 return "idk"
 
-    def getStringCrafting(self, dictCraft: dict):
+    def getStringCrafting(self, dictCraft: dict, itemName: str):
         text = ''
         for k in dictCraft:
-            text += f'\n{k}: {dictCraft[k][0]}. \nUsing: '
+            text += f'\n ##       {k.replace('_', ' ')}: {dictCraft[k][0]}. \n ### Using: \n'
             for i in range(len(dictCraft[k][1])):
-                text += f'\n    {dictCraft[k][1][i]} x {dictCraft[k][2][i]}; '
-            text += f'\nCrafting station: '
-            endInt = len(dictCraft[k][3])
-            for i in range(endInt):
-                if i != endInt-1:
-                    text += f'{dictCraft[k][3][i]} or '
-                else:
-                    text += f'{dictCraft[k][3][i]}.\n'
+                text += f'>         - {dictCraft[k][1][i]} x {dictCraft[k][2][i]} ;\n'
+            text += f'### Crafting station: {dictCraft[k][3]}'
         return text
 
 
-    def getStringDrop(self, dropList: dict):
+    def getStringDrop(self, dropList: dict, itemName: str):
         text = ''
+        text += f'{itemName.capitalize()}, Found on:'
         for k in dropList:
-            text += f'Mob: {k}. Chance: {dropList[k][0]}. Quantity: x{dropList[k][1]}\n'
+            text += f'\n>    - {k}; {dropList[k][0]}; Qtd: {dropList[k][1]};'
         return text
