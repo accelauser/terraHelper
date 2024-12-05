@@ -1,2 +1,3 @@
--  Terraria wiki fetcher bot. 
-![functioning bot](image.png "bot")
+- Terraria wiki fetcher bot. 
+- !help for commands 
+- ![functioning bot](image.png "bot")
